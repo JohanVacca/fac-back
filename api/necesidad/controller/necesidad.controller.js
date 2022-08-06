@@ -141,8 +141,31 @@ function actualizarNecesidad(req, res, next){
     try {
         validationResult(req).throw();
         let necesidad = req.body;
-        let necesidadObj = JSON.parse(JSON.stringify(necesidad));
         let idNecesidad = req.params.id
+
+        if(!necesidad.name){
+            delete necesidad.name
+        }
+        if(!necesidad.descripcion){
+            delete necesidad.descripcion
+        }
+        if(!necesidad.programa){
+            delete necesidad.programa
+        }
+        if(!necesidad.subprograma){
+            delete necesidad.subprograma
+        }
+        if(!necesidad.lineasinv){
+            delete necesidad.lineasinv
+        }
+        if(!necesidad.selectedValue){
+            delete necesidad.selectedValue
+        }
+        if(!necesidad.porque){
+            delete necesidad.porque
+        }
+
+        let necesidadObj = JSON.parse(JSON.stringify(necesidad));
 
         NecesidadDao['update'](idNecesidad, necesidadObj)
             .then(async _obj => {

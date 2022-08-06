@@ -52,24 +52,9 @@ NecesidadSchema.static('remove', async (id) =>{
  */
  NecesidadSchema.static('update', async (id, necesidadbody) => {
     try {
-        //const {name, programa, subprograma, descripcion, porque, lineasinv, selectedValue} = necesidadbody;
-        //let necesidad = await NecesidadDao.findById({_id: id}); //Creamos el producto que traemos de la DB buscando por ID gracias a params
-
-        // if (!necesidad) {
-        //     console.log("No existe la necesidad DAO VALIDATE")
-        // }
-
         if (typeof necesidadbody !== 'object') {
             throw new TypeError('Necesidad no es un Objeto');
         }
-        // necesidad.name = name;
-        // necesidad.programa = programa; //Si lo encontramos le añadiremos a sus valores actuales los valores que obtenemos del req.body, o sea, los del metodo PUT que envía el usuario.
-        // necesidad.subprograma = subprograma;
-        // necesidad.descripcion = descripcion;
-        // necesidad.porque = porque;
-        // necesidad.lineasinv = lineasinv;
-        // necesidad.selectedValue = selectedValue;
-
         return await NecesidadDao.findOneAndUpdate({_id: id}, necesidadbody,{new: true}).exec(); //Le pasamos los parametros con req.params, procurar llamar al lado izq. tal y como en la DB
     } catch (error) {
         throw error;
